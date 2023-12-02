@@ -61,8 +61,8 @@ console.log(user[5].password)
 let a = 1
 //let a = 0
 //let a = -3
-let x = a;
-if (x !== 0) {
+//let x5 = a;
+if (a !== 0) {
     console.log('ВІрно');
 } else {
     console.log('Невірно')
