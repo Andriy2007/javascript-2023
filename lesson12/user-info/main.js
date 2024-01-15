@@ -13,6 +13,7 @@ const foo = async () => {
 
     const ul = document.createElement('ul');
     const id = document.createElement('li');
+    const name = document.createElement('li');
     const username = document.createElement('li');
     const email = document.createElement('li');
     const phone = document.createElement('li');

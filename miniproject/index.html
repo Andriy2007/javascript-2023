@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>userList</title>
+</head>
+<body>
+<div id="userList"></div>
+
+
+<script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(value => value.json())
+        .then(value => {
+            for (const user of value) {
+                let userList = document.getElementById('userList');
+                let menu = document.createElement('div');
+                let userInfo = document.createElement('div');
+                let userButton = document.createElement('button');
+
+                userInfo.innerText = `${user.id} - ${user.name}`;
+                userButton.innerText = 'details';
+                userButton.onclick = function () {
+                    location.href = `user-details.html?userId=${user.id}`;
+                }
+
+                userList.append(menu)
+                menu.append(userInfo, userButton)
+
+                userList.style.display ='flex'
+                userList.style.height = '930px'
+                userList.style.flexDirection = 'column'
+                userList.style.flexWrap = 'wrap'
+                userList.style.alignContent = 'center'
+                userList.style.rowGap = '30px'
+                userList.style.columnGap = '30px'
+
+
+                menu.style.display ='flex'
+                menu.style.width = '300px'
+                menu.style.height = '140px'
+                menu.style.flexDirection = 'column'
+                menu.style.justifyContent = 'center'
+                menu.style.alignItems = 'center'
+                menu.style.background = 'silver'
+                menu.style.border = '3px solid black'
+                menu.style.fontWeight = 'bold'
+
+                userButton.style.width = '180px'
+                userButton.style.height = '40px'
+                userButton.style.marginTop = '10px'
+                userButton.style.fontSize = '20px'
+
+            }
+        })
+</script>
+</body>
+</html>

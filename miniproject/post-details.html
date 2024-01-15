@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postDetails</title>
+</head>
+<body>
+<div id="postDetails"></div>
+<div id="postComments"></div>
+
+<script>
+    let userId = new URL(location.href).searchParams.get('userId');
+
+    fetch(`http://jsonplaceholder.typicode.com/posts/${userId}`)
+        .then(response => response.json())
+        .then(posts => {
+
+            let postDetails = document.getElementById('postDetails');
+
+            postDetails.innerText = posts.body
+
+            postDetails.style.display = 'flex'
+            postDetails.style.alignItems = 'center'
+            postDetails.style.textAlign = 'center'
+            postDetails.style.justifyContent = 'center'
+            postDetails.style.background = 'silver'
+            postDetails.style.height = '400px'
+            postDetails.style.border = '3px solid black'
+            postDetails.style.fontWeight = 'bold'
+            postDetails.style.fontSize = '30px'
+
+            fetch('https://jsonplaceholder.typicode.com/comments')
+                .then(response => response.json())
+                .then(comments => {
+
+                    let postComments = document.getElementById('postComments');
+
+                    for (const comment of comments) {
+                        if (posts.id === comment.postId){
+                            let postComment = document.createElement('p');
+                            postComment.innerText = comment.body
+                            postComments.append(postComment)
+
+                            postComments.style.display = 'flex'
+                            postComments.style.flexWrap = 'wrap'
+                            postComments.style.justifyContent = 'center'
+                            postComments.style.columnGap = '10px'
+
+                            postComment.style.display = 'flex'
+                            postComment.style.alignItems = 'center'
+                            postComment.style.justifyContent = 'center'
+                            postComment.style.background = 'silver'
+                            postComment.style.width = '22%'
+                            postComment.style.height = '200px'
+                            postComment.style.border = '2px solid black'
+                            postComment.style.padding = '10px'
+                            postComment.style.fontWeight = 'bold'
+                        }
+                    }
+                })
+        })
+</script>
+</body>
+</html>
